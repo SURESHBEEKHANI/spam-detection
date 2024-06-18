@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify, render_template
 import joblib
 
 app = Flask(__name__)
-model = joblib.load('model/spam_model.pkl')
+model = joblib.load('Model\spam_model.spam_model.pkl')
 vectorizer = joblib.load('model/vectorizer.pkl')
 
 @app.route('/')
