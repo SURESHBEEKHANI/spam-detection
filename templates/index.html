@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Spam Detection System</h1>
+        <textarea id="textInput" placeholder="Enter your message here..."></textarea>
+        <button onclick="checkSpam()">Check for Spam</button>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        async function checkSpam() {
+            const text = document.getElementById('textInput').value;
+            const response = await fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ text: text }),
+            });
+            const data = await response.json();
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerText = `Prediction: ${data.prediction}`;
+        }
+    </script>
+</body>
+</html>
